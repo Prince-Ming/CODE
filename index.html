@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>东方臻藏 Eastern Treasure | 三创赛项目</title>
+    <!-- 国内稳定CDN：谷歌官方3D模型渲染脚本 -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -13,27 +15,114 @@
         html, body {
             width: 100%;
             min-height: 100vh;
-            background: #000000;
+            background: #0a0a0a; /* 黑金背景，贴合奢品调性 */
+            font-family: "思源黑体", "Microsoft Yahei", "PingFang SC", sans-serif;
         }
-        .wrap {
+
+        /* 第一部分：网站长图 */
+        .banner-section {
             width: 100%;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
         }
-        .site-img {
+        .banner-section img {
             width: 100%;
-            max-width: 1920px;
             height: auto;
             display: block;
+        }
+
+        /* 第二部分：3D模型展示区 */
+        .model-section {
+            width: 100%;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+        }
+        .model-title {
+            text-align: center;
+            color: #d4af37; /* 金色字体，国风奢品感 */
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+        }
+        .model-subtitle {
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+        }
+        .model-desc {
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* 3D模型容器 */
+        .model-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 75vh;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15); /* 金色光晕，提升质感 */
+            background: #000;
+        }
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            --progress-bar-color: #d4af37; /* 金色加载条 */
+            --poster-color: #0a0a0a;
+        }
+
+        /* 页脚 */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            background: #0a0a0a;
         }
     </style>
 </head>
 <body>
-    <div class="wrap">
-        <!-- 已经匹配你图片的子文件夹路径，直接用不用改 -->
-        <img class="site-img" src="eastern-treasure-site/index.jpg" alt="东方臻藏 官网概念图">
+    <!-- 第一部分：你的网站长图（路径已对应 eastern-treasure-site 文件夹） -->
+    <div class="banner-section">
+        <img src="eastern-treasure-site/index.jpg" alt="东方臻藏 Eastern Treasure 官方网站概念图">
+    </div>
+
+    <!-- 第二部分：3D青花瓷模型展示（路径已对应根目录的模型文件） -->
+    <div class="model-section">
+        <h2 class="model-title">3D非遗藏品 · 沉浸式展示</h2>
+        <p class="model-subtitle">3D HIGH-PRECISION SCANNING · IMMERSIVE DISPLAY</p>
+        <p class="model-desc">
+            采用工业级高精度3D扫描技术，1:1还原非遗青花瓷的天然纹理、繁复纹饰与器型结构。
+            支持360°自由旋转、超高清细节放大查看，打破线上展示的物理限制，
+            让全球用户足不出户即可沉浸式感受东方非遗工艺之美。
+        </p>
+
+        <div class="model-container">
+            <model-viewer
+                src="antique_ceramic_vase_01_4k.gltf"
+                alt="东方臻藏 非遗青花瓷3D模型"
+                camera-controls        <!-- 开启用户控制：旋转、缩放、平移 -->
+                auto-rotate            <!-- 自动旋转，打开网站自动展示 -->
+                rotation-per-second="25deg" <!-- 自动旋转速度，更优雅 -->
+                shadow-intensity="1"   <!-- 开启阴影，更真实立体 -->
+                exposure="1.3"         <!-- 亮度，提升青花瓷质感 -->
+                camera-orbit="45deg 60deg 2.5m" <!-- 初始视角 -->
+                min-camera-orbit="auto auto 0.5m" <!-- 最小缩放距离 -->
+                max-camera-orbit="auto auto 8m"   <!-- 最大缩放距离 -->
+            >
+            </model-viewer>
+        </div>
+    </div>
+
+    <div class="footer">
+        青芒创客 Team Qingmang Makers | 第十六届全国大学生电子商务“创新创意创业”挑战赛 项目
     </div>
 </body>
 </html>
